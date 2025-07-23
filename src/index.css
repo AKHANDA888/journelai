@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 48 50% 98%; /* Beige Light */
+    --foreground: 40 10% 15%; /* Dark Brown/Charcoal */
+    --card: 48 50% 96%;
+    --card-foreground: 40 10% 15%;
+    --popover: 48 50% 96%;
+    --popover-foreground: 40 10% 15%;
+    --primary: 195 85% 40%; /* Calming Teal */
+    --primary-foreground: 195 85% 98%;
+    --secondary: 35 85% 92%; /* Soft Peach */
+    --secondary-foreground: 35 85% 30%;
+    --muted: 40 10% 90%;
+    --muted-foreground: 40 10% 45%;
+    --accent: 35 90% 65%; /* Warm Orange */
+    --accent-foreground: 35 90% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 10% 88%;
+    --input: 40 10% 88%;
+    --ring: 195 85% 40%;
+    --radius: 0.75rem;
+    --chart-1: 195 85% 40%;
+    --chart-2: 35 90% 65%;
+  }
+
+  .dark {
+    --background: 220 20% 12%; /* Deep Navy */
+    --foreground: 220 20% 95%;
+    --card: 220 20% 15%;
+    --card-foreground: 220 20% 95%;
+    --popover: 220 20% 15%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 195 80% 60%;
+    --primary-foreground: 195 80% 10%;
+    --secondary: 220 15% 25%;
+    --secondary-foreground: 220 15% 90%;
+    --muted: 220 15% 25%;
+    --muted-foreground: 220 15% 65%;
+    --accent: 35 95% 70%;
+    --accent-foreground: 35 95% 15%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 30%;
+    --input: 220 15% 30%;
+    --ring: 195 80% 60%;
+    --chart-1: 195 80% 60%;
+    --chart-2: 35 95% 70%;
+  }
+
+  .theme-beige {
+    --background: 45 35% 96%; /* Creamy Beige */
+    --foreground: 35 25% 25%; /* Dark Brown */
+    --card: 45 35% 94%;
+    --card-foreground: 35 25% 25%;
+    --popover: 45 35% 94%;
+    --popover-foreground: 35 25% 25%;
+    --primary: 35 55% 50%; /* Muted Terracotta */
+    --primary-foreground: 35 55% 98%;
+    --secondary: 40 30% 90%; /* Light Tan */
+    --secondary-foreground: 40 30% 20%;
+    --muted: 40 30% 88%;
+    --muted-foreground: 40 30% 45%;
+    --accent: 160 40% 45%; /* Sage Green */
+    --accent-foreground: 160 40% 95%;
+    --border: 40 30% 85%;
+    --input: 40 30% 85%;
+    --ring: 35 55% 50%;
+    --chart-1: 35 55% 50%;
+    --chart-2: 160 40% 45%;
+  }
+
+  .theme-brown {
+    --background: 30 25% 15%; /* Dark Chocolate */
+    --foreground: 35 20% 88%; /* Off-white */
+    --card: 30 25% 18%;
+    --card-foreground: 35 20% 88%;
+    --popover: 30 25% 18%;
+    --popover-foreground: 35 20% 88%;
+    --primary: 35 45% 70%; /* Warm Caramel */
+    --primary-foreground: 35 45% 10%;
+    --secondary: 30 20% 25%; /* Darker Brown */
+    --secondary-foreground: 30 20% 80%;
+    --muted: 30 20% 25%;
+    --muted-foreground: 30 20% 60%;
+    --accent: 45 60% 65%; /* Gold */
+    --accent-foreground: 45 60% 10%;
+    --border: 30 20% 30%;
+    --input: 30 20% 30%;
+    --ring: 35 45% 70%;
+    --chart-1: 35 45% 70%;
+    --chart-2: 45 60% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+}

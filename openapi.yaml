@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: Aura AI Journal API
+  description: |-
+    API for the Aura AI Journaling application. Provides endpoints for managing journal entries, insights, goals, and more.
+  version: 1.0.0
+servers:
+  - url: https://example.com/api
+paths:
+  /prompts:
+    get:
+      summary: Get Journal Prompts
+      description: Returns daily, mood, and history-tailored prompts for a user.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "user-123"
+      responses:
+        '200':
+          description: A list of journal prompts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prompts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JournalPrompt'
+  /sentiment:
+    post:
+      summary: Analyze Sentiment
+      description: Analyzes the sentiment of a given text.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: "I had a wonderful day today!"
+      responses:
+        '200':
+          description: The sentiment analysis result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sentiment'
+  /insights:
+    get:
+      summary: Get User Insights
+      description: Retrieves key themes and weekly chart data for a user.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "user-123"
+      responses:
+        '200':
+          description: User's insights including word cloud and weekly summary.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Insight'
+  /goals:
+    get:
+      summary: Get User Goals
+      description: Retrieves the list of goals for a user.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "user-123"
+      responses:
+        '200':
+          description: A list of user goals.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Goal'
+    post:
+      summary: Create or Update a Goal
+      description: Allows creating a new goal or updating an existing one.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Goal'
+      responses:
+        '201':
+          description: Goal created/updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Goal'
+
+components:
+  schemas:
+    JournalPrompt:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        text:
+          type: string
+        category:
+          type: string
+          enum: [daily, mood, history]
+    Sentiment:
+      type: object
+      properties:
+        sentiment:
+          type: string
+          enum: [happy, sad, stressed, reflective, neutral]
+        color:
+          type: string
+          description: "Hex color code associated with the sentiment"
+          example: "#4ade80"
+    Insight:
+      type: object
+      properties:
+        wordCloud:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+              value:
+                type: integer
+        weeklySummary:
+          type: object
+          properties:
+            chartData:
+              type: array
+              items:
+                type: object
+                properties:
+                  day:
+                    type: string
+                  mood:
+                    type: integer
+    Goal:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        type:
+          type: string
+          enum: [sleep, exercise, gratitude]
+        streak:
+          type: integer
+        completed:
+          type: boolean
